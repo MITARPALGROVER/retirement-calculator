@@ -22,7 +22,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <Header />
       
-      <div className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+      <div className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-32 lg:pb-8 w-full">
         {/* Main 2-column Layout */}
         <div className="flex flex-col lg:flex-row gap-8">
           
@@ -166,6 +166,7 @@ export default function Home() {
 
           {/* RIGHT PANEL: Results */}
           <section 
+            id="results-section"
             className={`w-full lg:w-[65%] flex flex-col gap-6 ${hasError ? 'opacity-40 grayscale pointer-events-none' : ''}`}
             aria-live="polite"
             aria-atomic="true"
@@ -302,6 +303,29 @@ export default function Home() {
 
         </div>
       </div>
+
+      {/* MOBILE STICKY BOTTOM BAR */}
+      {!hasError && (
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-gray-100 p-3 pb-6 shadow-[0_-10px_40px_rgba(0,0,0,0.08)] z-40 no-print animate-in fade-in slide-in-from-bottom-5">
+          <div className="flex items-center justify-between gap-3 max-w-lg mx-auto">
+            <div className="flex flex-col min-w-0">
+              <span className="text-[8px] sm:text-[10px] uppercase font-bold text-[#919090] tracking-tighter whitespace-nowrap mb-0.5">SIP Requirement</span>
+              <span className="text-lg font-bold text-[#224c87] truncate">{formatCurrency(results.requiredMonthlySIP)}</span>
+            </div>
+            <div className="h-8 w-px bg-gray-100 flex-shrink-0" />
+            <div className="flex flex-col min-w-0">
+              <span className="text-[8px] sm:text-[10px] uppercase font-bold text-[#919090] tracking-tighter whitespace-nowrap mb-0.5">Target Corpus</span>
+              <span className="text-lg font-bold text-gray-800 truncate">{formatLargeCurrency(results.totalRequiredCorpus)}</span>
+            </div>
+            <button 
+              onClick={() => document.getElementById('results-section')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-[#da3832] text-white text-[10px] font-bold px-4 py-2.5 rounded-lg shadow-md shadow-[#da3832]/20 active:scale-95 transition-transform whitespace-nowrap"
+            >
+              Analyze
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
