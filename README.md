@@ -34,7 +34,7 @@ The HDFC Retirement Planner provides users with a comprehensive view of their fi
 
 1. Clone the repository:
    ```bash
-   git clone [repository-url]
+   git clone https://github.com/MITARPALGROVER/retirement-calculator.git
    ```
 2. Install dependencies:
    ```bash
